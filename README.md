@@ -1,7 +1,7 @@
 # SESEmailForward
 Amazon SES Email Forward to Your Inbox
 
-[![Deploy Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=SESEmailForward&templateURL=https://s3.amazonaws.com/public.cf.templates/forwarder.template)
+[![Deploy Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=SESEmailForward&templateURL=https://raw.githubusercontent.com/gergof/SESEmailForward/master/SESEmailForward.yml)
 
 ## Usage Guide
 You can deploy the CloudFormation stack which will provision the following AWS Services
