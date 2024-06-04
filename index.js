@@ -1,9 +1,9 @@
-import { SESClient, SendRawEmailCommand } from '@aws-sdk/client-ses';
+const { SESClient, SendRawEmailCommand } = require('@aws-sdk/client-ses');
 
 const forwardFrom = process.env.from_address;
 const forwardTo = process.env.to_address;
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
     const msgInfo = JSON.parse(event.Records[0].Sns.Message);
 
     if (
@@ -54,7 +54,7 @@ export const handler = async (event) => {
         email = 'Empty email';
     }
 
-    const command = SendRawEmailCommand({
+    const command = new SendRawEmailCommand({
         Source: forwardFrom,
         Destinations: [forwardTo],
         RawMessage: {

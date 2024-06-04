@@ -19,13 +19,13 @@ Resources:
             from_address: { "Fn::Sub": [ "${FromAddress}", { "FromAddress": {"Ref" : "FromAddress" }} ]}
             to_address: { "Fn::Sub": [ "${ToAddress}", { "ToAddress": {"Ref" : "ToAddress" }} ]}
         Code:
-          ZipFile: !Sub |
-            import { SESClient, SendRawEmailCommand } from '@aws-sdk/client-ses';
+          ZipFile: |
+            const { SESClient, SendRawEmailCommand } = require('@aws-sdk/client-ses');
 
             const forwardFrom = process.env.from_address;
             const forwardTo = process.env.to_address;
 
-            export const handler = async (event) => {
+            exports.handler = async (event) => {
                 const msgInfo = JSON.parse(event.Records[0].Sns.Message);
 
                 if (
@@ -76,7 +76,7 @@ Resources:
                     email = 'Empty email';
                 }
 
-                const command = SendRawEmailCommand({
+                const command = new SendRawEmailCommand({
                     Source: forwardFrom,
                     Destinations: [forwardTo],
                     RawMessage: {
